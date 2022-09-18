@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RunFast</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <form onsubmit="return false;">
+        <fieldset class="p-2 m-2 border border-primary rounded">
+          <details id="section_runInfo" open>
+            <summary class="h2">Run Info <span class="text-muted float-end" id="runInfoDisplay"></span></summary>
+            <div class="row g-3 mt-3">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="team-number-label"
+                  >Team</span
+                >
+                <input
+                  type="number"
+                  class="form-control form-control-lg"
+                  id="team"
+                  aria-label="Team Number"
+                  aria-describedby="team-number-label"
+                />
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="run-number-label">Run</span>
+                <input
+                  type="number"
+                  class="form-control form-control-lg"
+                  id="run"
+                  aria-label="Run Number"
+                  aria-describedby="run-number-label"
+                />
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="time-label">Time</span>
+                <input
+                  type="time"
+                  class="form-control form-control-lg"
+                  id="time"
+                  aria-label="Time"
+                  aria-describedby="time-label"
+                />
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="input-group">
+                <span class="input-group-text" id="location-label"
+                  >Location</span
+                >
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  id="location"
+                  placeholder="..."
+                  aria-label="Location"
+                  aria-describedby="location-label"
+                />
+              </div>
+            </div>
+          </details>
+        </fieldset>
+        <fieldset class="p-2 m-2 border border-primary rounded">
+          <details id="section_demographics">
+            <summary class="h2">Demographics <span class="text-muted float-end" id="demographicsDisplay"></span></summary>
+            <div class="row g-3 mt-3">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="pt-fname-label"
+                  >1st Name</span
+                >
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  id="ptFName"
+                  placeholder="Jane"
+                  aria-label="Patient First Name"
+                  aria-describedby="pt-fname-label"
+                />
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="pt-lastinitial-label"
+                  >Last Initial</span
+                >
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  id="ptLNameInitial"
+                  placeholder="D"
+                  aria-label="Patient Last Initial"
+                  aria-describedby="pt-lastinitial-label"
+                />
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="pt-age-label">Age</span>
+                <input
+                  type="number"
+                  class="form-control form-control-lg"
+                  id="ptAge"
+                  placeholder="25"
+                  aria-label="Patient Age"
+                  aria-describedby="pt-age-label"
+                />
+              </div>
+            </div>
+            <div class="row g-3">
+              <div
+                class="btn-group"
+                role="group"
+                aria-label="Basic radio toggle button group"
+              >
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="ptSex"
+                  id="sexMale"
+                  value="male"
+                  autocomplete="off"
+                />
+                <label class="btn btn-outline-primary" for="sexMale"
+                  >Male</label
+                >
+
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="ptSex"
+                  id="sexFemale"
+                  value="female"
+                  autocomplete="off"
+                />
+                <label class="btn btn-outline-primary" for="sexFemale"
+                  >Female</label
+                >
+
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="ptSex"
+                  id="sexOther"
+                  value="other"
+                  autocomplete="off"
+                />
+                <label class="btn btn-outline-primary" for="sexOther"
+                  >Other</label
+                >
+
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="ptSex"
+                  id="sexUnkown"
+                  value="unknown"
+                  autocomplete="off"
+                  checked
+                />
+                <label class="btn btn-outline-primary" for="sexUnkown"
+                  >Unkown</label
+                >
+              </div>
+            </div>
+          </details>
+        </fieldset>
+
+        <fieldset class="p-2 m-2 border border-primary rounded">
+          <details id="section_ao">
+            <summary class="h2">A&O
+              <span id="ao_value" class="badge bg-dark float-end">A&Ox0</span>
+            </summary>
+            <div class="row g-3 mt-3">
+              <fieldset>
+                <div class="form-check form-check-inline h3">
+                  <input
+                    class="ao-checkbox form-check-input"
+                    type="checkbox"
+                    id="ao-person"
+                  />
+                  <label class="form-check-label" for="ao-person">Person</label>
+                </div>
+                <div class="form-check form-check-inline h3">
+                  <input
+                    class="ao-checkbox form-check-input"
+                    type="checkbox"
+                    id="ao-place"
+                  />
+                  <label class="form-check-label" for="ao-place">Place</label>
+                </div>
+                <div class="form-check form-check-inline h3">
+                  <input
+                    class="ao-checkbox form-check-input"
+                    type="checkbox"
+                    id="ao-time"
+                  />
+                  <label class="form-check-label" for="ao-time">Time</label>
+                </div>
+                <div class="form-check form-check-inline h3">
+                  <input
+                    class="ao-checkbox form-check-input"
+                    type="checkbox"
+                    id="ao-situation"
+                  />
+                  <label class="form-check-label" for="ao-situation"
+                    >Situation</label
+                  >
+                </div>
+              </fieldset>
+            </div>
+          </details>
+        </fieldset>
+        <fieldset class="p-2 m-2 border border-primary rounded">
+          <details id="section_cc">
+            <summary class="h2">
+              Chief Complaint <span class="text-muted float-end" id="ccDisplay"></span>
+            </summary>
+            <div class="row g-3 mt-3">
+              <div class="btn-group mt-0" role="group">
+                <select
+                  id="cc"
+                  class="form-select"
+                  size="15"
+                  aria-label="Chief Complaint"
+                >
+                  <option class="h3" value="Abdominal Pain">
+                    Abdominal Pain
+                  </option>
+                  <option class="h3" value="Allergic Reaction">
+                    Allergic Reaction
+                  </option>
+                  <option class="h3" value="AMS / Altered">
+                    AMS / Altered
+                  </option>
+                  <option class="h3" value="Assault">Assault</option>
+                  <option class="h3" value="Burns">Burns</option>
+                  <option class="h3" value="Cardiac Arrest">
+                    Cardiac Arrest
+                  </option>
+                  <option class="h3" value="Chest Pain">Chest Pain</option>
+                  <option class="h3" value="Choking">Choking</option>
+                  <option class="h3" value="Diabetic Issue">
+                    Diabetic Issue
+                  </option>
+                  <option class="h3" value="DOA">DOA</option>
+                  <option class="h3" value="Electrocution">
+                    Electrocution
+                  </option>
+                  <option class="h3" value="Exposure / Dehydration">
+                    Exposure / Dehydration
+                  </option>
+                  <option class="h3" value="Eye Injury">Eye Injury</option>
+                  <option class="h3" value="Fall">Fall</option>
+                  <option class="h3" value="First-Aid Supply Request">
+                    First-Aid Supply Request
+                  </option>
+                  <option class="h3" value="Med Clinic Walk In">
+                    Med Clinic Walk In
+                  </option>
+                  <option class="h3" value="HAZMAT">HAZMAT</option>
+                  <option class="h3" value="Headache / Migraine">
+                    Headache / Migraine
+                  </option>
+                  <option class="h3" value="ILI / FLS">ILI / FLS</option>
+                  <option class="h3" value="Intox">Intox</option>
+                  <option class="h3" value="IPR / Psych">IPR / Psych</option>
+                  <option class="h3" value="Laceration / Bleeding">
+                    Laceration / Bleeding
+                  </option>
+                  <option class="h3" value="Nausea / Vomiting">
+                    Nausea / Vomiting
+                  </option>
+                  <option class="h3" value="Overdose / Poisoning">
+                    Overdose / Poisoning
+                  </option>
+                  <option class="h3" value="Seizure / Convulsions">
+                    Seizure / Convulsions
+                  </option>
+                  <option class="h3" value="Sick Person / Medical NOS">
+                    Sick Person / Medical NOS
+                  </option>
+                  <option class="h3" value="Stabbing / GSW">
+                    Stabbing / GSW
+                  </option>
+                  <option class="h3" value="SOB / Respiratory Distress">
+                    SOB / Respiratory Distress
+                  </option>
+                  <option class="h3" value="Syncope/ Fainting">
+                    Syncope/ Fainting
+                  </option>
+                  <option class="h3" value="Trauma / Injury">
+                    Trauma / Injury
+                  </option>
+                  <option class="h3" value="Unknown Medical">
+                    Unknown Medical
+                  </option>
+                  <option class="h3" value="Unresponsive">Unresponsive</option>
+                </select>
+              </div>
+            </div>
+          </details>
+        </fieldset>
+        <div class="d-grid gap-2">
+          <button type="button" class="btn btn-primary btn-lg" id="submitForm">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      // load already-known fields from URI and populate
+      function loadValsFromURI() {
+        const fieldsToLoad = ["team", "run", "time", "location"];
+        let fieldsWhichHaveBeenAutoloaded = new Set(); // used to determine if we've filled in all the run info so we can autocollapse
+        const urlParams = new URLSearchParams(window.location.search);
+
+        for (fieldName of fieldsToLoad) {
+          if (urlParams.has(fieldName)) {
+            fieldsWhichHaveBeenAutoloaded.add(fieldName);
+            const fieldElem = document.getElementById(fieldName);
+            fieldElem.value = urlParams.get(fieldName);
+            fieldElem.disabled = true;
+          }
+        }
+
+        // also detect if time uri param is 'now', in which case use page load time
+        if (urlParams.get("time") == "now") {
+          let time = new Date();
+          time.setMinutes(time.getMinutes() - time.getTimezoneOffset());
+          document.querySelector("#time").value = time.toJSON().slice(11, 19);
+          fieldsWhichHaveBeenAutoloaded.add("time");
+        }
+
+        // if we've loaded all available fields in Run Info, render the section title summary, collapse Run Info, and open Demographics
+        if (fieldsWhichHaveBeenAutoloaded.size === fieldsToLoad.length) {
+          renderSectionSummaries();
+          document
+            .querySelector("details#section_runInfo")
+            .removeAttribute("open");
+          document
+            .querySelector("details#section_demographics")
+            .setAttribute("open", true);
+        }
+      }
+
+      function getAOValue() {
+        let aoValue = 0;
+        for (checkbox of document.querySelectorAll(".ao-checkbox")) {
+          if (checkbox.checked) {
+            aoValue += 1;
+            continue;
+          }
+          break;
+        }
+
+        return aoValue;
+      }
+
+      function closeNonSelectedDetails(evt) {
+        if (evt.target.open) {
+          // we're opening this (target.open set before event handler)
+          for (openDetail of document.querySelectorAll("details[open]")) {
+            if (evt.target != openDetail) {
+              openDetail.removeAttribute("open");
+            }
+          }
+        }
+      }
+
+      function renderSectionSummaries() {
+        // Run Info
+        const runNum = document.querySelector("#run").value;
+        const location = document.querySelector("#location").value;
+
+        // only display run info if we have a run number and location
+        if (runNum && location) {
+          document.querySelector("#runInfoDisplay").innerText = `Run ${runNum} @ ${location}`;
+        }
+
+        // Demographics
+        const fname = document.querySelector("#ptFName").value;
+        const lnameinitial = document.querySelector("#ptLNameInitial").value;
+        const age = document.querySelector("#ptAge").value;
+        const sexInitial = document.querySelector("input[name=ptSex]:checked").value.slice(0, 1).toUpperCase();
+
+        // only display demographics if we have at least a first name and an age
+        if (fname && age) {
+          document.querySelector('#demographicsDisplay').innerText = `${fname} ${lnameinitial} ${age}yo ${sexInitial}`;
+        }
+
+        // A&O
+        // get value
+        const aoValue = getAOValue();
+        // clear all bg-* classes to clear color
+        const aoDisplayElem = document.querySelector("#ao_value");
+        aoDisplayElem.classList.remove.apply(
+          aoDisplayElem.classList,
+          Array.from(aoDisplayElem.classList).filter((v) => v.startsWith("bg"))
+        );
+        // set display value
+        aoDisplayElem.innerText = `A&Ox${aoValue}`;
+        // color appropriately
+        switch (aoValue) {
+          case 0:
+            aoDisplayElem.classList.add("bg-dark");
+            break;
+          case 1:
+            aoDisplayElem.classList.add("bg-danger");
+            break;
+          case 2:
+            aoDisplayElem.classList.add("bg-warning");
+            break;
+          case 3:
+            aoDisplayElem.classList.add("bg-info");
+            break;
+          case 4:
+            aoDisplayElem.classList.add("bg-success");
+            break;
+        }
+
+        // chief complaint
+        document.querySelector("#ccDisplay").innerText = `${
+          document.querySelector("#cc").value
+        }`;
+      }
+
+      function composeData() {
+        return {
+          team: document.querySelector("#team").value,
+          run: document.querySelector("#run").value,
+          time: document.querySelector("#time").value,
+          location: document.querySelector("#location").value,
+          patient: {
+            fname: document.querySelector("#ptFName").value,
+            lnameinitial: document.querySelector("#ptLNameInitial").value,
+            age: document.querySelector("#ptAge").value,
+            sex: document.querySelector("input[name=ptSex]:checked").value,
+          },
+          ao: getAOValue(),
+          cc: document.querySelector("#cc").value,
+        };
+      }
+
+      function submitForm(evt) {
+        if (evt.preventDefault) evt.preventDefault();
+
+        const formData = composeData();
+
+        // DO STUFF WITH DATA HERE
+        console.log(formData);
+
+        return false;
+      }
+
+      // make an ersatz single-drawer-at-a-time system
+      document.querySelectorAll("details").forEach((el) => {
+        el.addEventListener("toggle", closeNonSelectedDetails);
+      });
+
+      // things to rerender summaries on edit of
+      const fieldIDsToRerenderSummariesOnChangeOf = ["run", "location", "cc", "ptFName", "ptLNameInitial", "ptAge", ]
+      for (field of fieldIDsToRerenderSummariesOnChangeOf) {
+        document
+        .getElementById(field)
+        .addEventListener("change", renderSectionSummaries);
+      }
+      // need special case for A+O checkboxes
+      document.querySelectorAll(".ao-checkbox").forEach((el) => {
+        el.addEventListener("change", renderSectionSummaries);
+      });
+      // need special case for gender radios
+      document.querySelectorAll("input[name=ptSex]").forEach((el) => {
+        el.addEventListener("change", renderSectionSummaries);
+      });
+
+
+      document
+        .querySelector("#submitForm")
+        .addEventListener("click", submitForm);
+      document
+        .querySelector("#submitForm")
+        .addEventListener("touchend", submitForm);
+
+      loadValsFromURI();
+    </script>
+  </body>
+</html>
